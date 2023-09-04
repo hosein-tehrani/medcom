@@ -203,5 +203,4 @@ import  BloodSugarChart from './components/BloodSugarChart.vue'
 .backgroundImg {
   width: 70px ; height : 70px ; border-radius: 50%
 }
-/* Hide the default footer by setting its height to 0 */
 </style>
