@@ -25,6 +25,8 @@ export default defineNuxtPlugin((nuxtApp) => {
             secondary: "#ff2056",
             warning: "#fbbc04",
             gray100: "#ECEFF1",
+            success: "#13CE66",
+            info: "#1FB6FF",
           },
         },
       },

@@ -2,33 +2,27 @@
   <v-app>
     <NuxtLayout>  
       <v-row>
-        <v-col  cols="12" md="9">
-          <v-card class="p-2">
-            <v-card-title>
-              <v-row>
-                <v-col>آزمایشات</v-col>
-                <v-col>
-                  <v-btn rounded="xl" color="primary" class="float-left">آزمایش جدید</v-btn>
-                </v-col>
-              </v-row>
-            </v-card-title>
-            <v-divider></v-divider>
+        <v-col  cols="12" md="8">
+          <v-card class="pa-5 light-box-shadow-1">
+            <v-toolbar-title>
+              <div class="d-flex justify-space-between align-center">
+                <h5>آزمایشات</h5>
+                  <v-btn color="primary" class="rounded-xl elevation-0">آزمایش جدید</v-btn>
+              </div>
+            </v-toolbar-title>
+            <v-divider class="my-3"></v-divider>
             <v-data-table
-              items-per-page="'10'"
-              hide-footer
-              :headers="headers"
-              :items="items"
-              class="elevation-1"
+            items-per-page="5"
+             :headers="headers"
+              :items="desserts"
+               item-value="name"
+              class="elevation-0"
             >
-            <template v-slot:item.status="{ item }">
-              <v-chip :color="getColor(item.columns.status).color">
-                {{ getColor(item.columns.status).text }}
-              </v-chip>
+            <template #[`item.status`]="{item}">
+              <v-btn :color="getColor(item.columns.status).color" class="rounded-xl elevation-0 text-white">{{ getColor(item.columns.status).text }}</v-btn>
             </template>
-            <template v-slot:item.operation="{ item }">
-              <v-btn>
-                جزئیات
-              </v-btn>
+            <template #[`item.details`]>
+              <v-btn color="gray100" class="rounded-xl elevation-0">جزئیات</v-btn>
             </template>
           </v-data-table>
           </v-card>
@@ -119,74 +113,64 @@
   </v-app>
 </template>
 <script>
-import { VDataTable } from 'vuetify/labs/VDataTable'
-import BloodPressureChart from './components/BloodPressureChart.vue'
+import {
+  VDataTable,
+  VDataTableServer,
+  VDataTableVirtual,
+} from "vuetify/labs/VDataTable";import BloodPressureChart from './components/BloodPressureChart.vue'
 import  BloodSugarChart from './components/BloodSugarChart.vue'
   export default {
-    components:{ VDataTable, BloodSugarChart, BloodPressureChart },
+    components:{ VDataTable, BloodSugarChart, BloodPressureChart,  VDataTableServer,
+    VDataTableVirtual, },
     data () {
       return {
         insuranceText : 'اطلاعات بیمه خود را وارد کنید تا پس از اعتبارسنجی، از مزایای بیمۀ خود به هنگام پرداخت استفاده نمایید.',
         headers: [
-        {
+          {
             title: 'تاریخ',
             align: 'start',
-            sortable: false,
             key: 'date',
           },
-          { title: 'دسته', sortable: false, align: 'start', key: 'category' },
-          { title: 'نمونه گیر', sortable: false, align: 'start', key: 'tester' },
-          { title: 'وضعیت', sortable: false, align: 'start', key: 'status' },
-          { title: '', sortable: false, align: 'start', key: 'operation' }
+          { title: 'دسته', align: 'end', key: 'category' },
+          { title: 'نمونه گیر', align: 'end', key: 'sampler' },
+          { title: 'وضعیت', align: 'end', key: 'status' },
+          { title: '', align: 'end', key: 'details' },
         ],
-        items: [
+        desserts: [
           {
             date: '1402/02/02',
-            category: 'بزرگسالان(آقایان) ',
-            tester: 'علی اکبری ',
-            status: 'done',
+            category: "بزرگسالان (آقایان)",
+            sampler: 6.0,
+            status: "readyToPay",
           },
           {
-            date: '1402/02/02',
-            category: 'نسخه‌خوان',
-            tester: 'علی اکبری ',
-            status: 'readyToPay',
+            date: '1402/03/03',
+            category: "نسخه خوان",
+            sampler: 0.0,
+            status: "paid",
           },
           {
-            date: '1402/02/02',
-            category: 'بزرگسالان(آقایان) ',
-            tester: 'علی اکبری ',
-            status: 'paid',
+            date: '1402/04/04',
+            category: "بزرگسالان (بانوان)",
+            sampler: 26.0,
+            status: "done",
           },
           {
-            date: '1402/02/02',
-            category: 'بزرگسالان(آقایان) ',
-            tester: 'علی اکبری ',
-            status: 'paid',
+            date: '1402/05/05',
+            category: "نسخه خوان",
+            sampler: 16.0,
+            status: "paid",
           },
           {
-            date: '1402/02/02',
-            category: 'بزرگسالان(آقایان) ',
-            tester: 'علی اکبری ',
-            status: 'paid',
+            date: '1402/06/06',
+            category: "بزرگسالان (آقایان)",
+            sampler: 16.0,
+            status: "readyToPay",
           },
-          {
-            date: '1402/02/02',
-            category: 'بزرگسالان(آقایان) ',
-            tester: 'علی اکبری ',
-            status: 'paid',
-          },
-          {
-            date: '1402/02/02',
-            category: 'بزرگسالان(آقایان) ',
-            tester: 'علی اکبری ',
-            status: 'paid',
-          },               
-
         ],
         statusDic:{
           done: {color: 'primary', text: 'انجام شده'},
-          readyToPay: {color: 'info', text: 'آماده پرداخت'},
+          readyToPay: {color: 'info', text:"در انتظار پرداخت"},
           paid: {color: 'success', text: 'پرداخت شده'},
         }
       }
@@ -202,4 +186,5 @@ import  BloodSugarChart from './components/BloodSugarChart.vue'
 .backgroundImg {
   width: 70px ; height : 70px ; border-radius: 50%
 }
+/* Hide the default footer by setting its height to 0 */
 </style>
