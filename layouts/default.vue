@@ -15,9 +15,17 @@
         </v-list>
       </v-navigation-drawer>
       <div class="header"></div>
-      <v-main style="height: 250px" class="ma-4">
-        <slot />
-      </v-main>
+      <div class="customContainer">
+        <v-main>
+          <div class="d-flex justify-end align-center my-3">
+            <v-btn height="45" variant="outlined" color="primary500" class="mx-5 rounded-xl" >
+              <v-icon>mdi mdi-wallet</v-icon>
+              250,000 تومان</v-btn> 
+            <v-btn variant="outlined" color="primary500" icon="mdi-bell"></v-btn>
+          </div>
+          <slot />
+        </v-main>
+      </div>
     </div>
 
 </template>
@@ -38,3 +46,10 @@
     },
   }
 </script>
+<style scoped>
+.customContainer {
+  width: 98%;
+  margin: 0 auto;
+  max-width: 1600px;
+}
+</style>

@@ -29,6 +29,9 @@ export default {
 title: {
     text: ' '
 },
+chart: {
+    height: 320, // Set the height of the chart container (adjust to your desired height)
+  },
 
 xAxis: {
     categories : ['فروردین', 'اردیبهشت','خرداد','تیر','مرداد','شهریور','مهر','آبان','آذر','دی','بهمن','اسفند'],
