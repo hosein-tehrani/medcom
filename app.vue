@@ -92,7 +92,27 @@
           </v-card>
         </v-col>
         <v-col cols="12" md="4">
-          
+          <v-card class="light-box-shadow-1 pa-5">
+            <v-toolbar-title>
+              <div class="d-flex justify-space-between align-center">
+                <h5 class="mediumFont">بیمه</h5>
+                  <v-btn class="rounded-xl elevation-0 text-primary" color="primary50">ویرایش</v-btn>
+              </div>
+            </v-toolbar-title>
+            <v-divider class="my-3"></v-divider>
+            <div class="d-flex align-center justify-center">
+              <div cols="12" md="9">
+                <p>
+                  {{ insuranceText }}
+                </p>
+              </div>
+              <div cols="5" md="3">
+                <div class="d-flex justify-center align-center bg-secondary50 ml-2 backgroundImg">
+                  <img style="z-index: 2" class="mt-2 mb-1 " width="40px" src='~/assets/img/danger.svg' />
+                </div>
+              </div>
+            </div>
+          </v-card>
         </v-col>
       </v-row>
     </NuxtLayout>
@@ -106,6 +126,7 @@ import  BloodSugarChart from './components/BloodSugarChart.vue'
     components:{ VDataTable, BloodSugarChart, BloodPressureChart },
     data () {
       return {
+        insuranceText : 'اطلاعات بیمه خود را وارد کنید تا پس از اعتبارسنجی، از مزایای بیمۀ خود به هنگام پرداخت استفاده نمایید.',
         headers: [
         {
             title: 'تاریخ',
@@ -177,3 +198,8 @@ import  BloodSugarChart from './components/BloodSugarChart.vue'
     },
   }
 </script>
+<style scoped>
+.backgroundImg {
+  width: 70px ; height : 70px ; border-radius: 50%
+}
+</style>
