@@ -2,7 +2,7 @@
   <v-app>
     <NuxtLayout>  
       <v-row>
-        <v-col>
+        <v-col  cols="12" md="9">
           <v-card class="p-2">
             <v-card-title>
               <v-row>
@@ -61,14 +61,49 @@
             <v-btn rounded="xl" block color="primary">محاسبه BMI</v-btn>
           </v-card>
         </v-col>
+        <v-col cols="12" md="4">
+          <v-card class="light-box-shadow-1 pa-5">
+            <v-toolbar-title>
+              <div class="d-flex justify-space-between align-center">
+                <h5 class="mediumFont">قند خون</h5>
+                <div class="d-flex mb-2">
+                  <v-btn icon="mdi-exclamation" size="small" color="gray100" />
+                  <v-btn icon="mdi-plus" size="small" color="primary" class="mx-1" />
+                </div>
+              </div>
+            </v-toolbar-title>
+            <v-divider></v-divider>
+            <blood-sugar-chart /> 
+          </v-card>
+        </v-col>
+        <v-col cols="12" md="4">
+          <v-card class="light-box-shadow-1 pa-5">
+            <v-toolbar-title>
+              <div class="d-flex justify-space-between align-center">
+                <h5 class="mediumFont">فشار خون</h5>
+                <div class="d-flex mb-2">
+                  <v-btn icon="mdi-exclamation" size="small" color="gray100" />
+                  <v-btn icon="mdi-plus" size="small" color="primary" class="mx-1" />
+                </div>
+              </div>
+            </v-toolbar-title>
+            <v-divider></v-divider>
+           <blood-pressure-chart />
+          </v-card>
+        </v-col>
+        <v-col cols="12" md="4">
+          
+        </v-col>
       </v-row>
     </NuxtLayout>
   </v-app>
 </template>
 <script>
 import { VDataTable } from 'vuetify/labs/VDataTable'
+import BloodPressureChart from './components/BloodPressureChart.vue'
+import  BloodSugarChart from './components/BloodSugarChart.vue'
   export default {
-    components:{ VDataTable },
+    components:{ VDataTable, BloodSugarChart, BloodPressureChart },
     data () {
       return {
         headers: [
