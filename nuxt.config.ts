@@ -1,20 +1,25 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
-  modules: ['nuxt-icon'],
+  modules: ["nuxt-icon"],
   typescript: {
-    shim: false
+    shim: false,
   },
-  css: ['@mdi/font/css/materialdesignicons.min.css','vuetify/lib/styles/main.sass'],
+  css: [
+    "@mdi/font/css/materialdesignicons.min.css",
+    "vuetify/lib/styles/main.sass",
+    "@/assets/css/main.scss",
+  ],
   build: {
-    transpile: ['vuetify'],
+    transpile: ["vuetify"],
   },
   vite: {
     define: {
-      'process.env.DEBUG': false,
+      "process.env.DEBUG": false,
     },
+
     ssr: {
-      noExternal: ["vuetify"]
-    }
+      noExternal: ["vuetify"],
+    },
   },
-})
+});
